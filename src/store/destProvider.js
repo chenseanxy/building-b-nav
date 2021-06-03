@@ -1,3 +1,5 @@
+import {coordConvert} from "../helpers";
+
 const rawSurvey = {
     e1: {
         coords: "108.837069,34.132801",
@@ -38,7 +40,7 @@ for (const entrance in rawSurvey){
                 survey[rooms[room]] = {
                     entrance: {
                         id: entrance,
-                        coords,
+                        coords: coordConvert(coords),
                         toStair: {...stair},
                     },
                     direction: {
