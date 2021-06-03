@@ -25,6 +25,12 @@
         </v-row>
       </v-container>
     </v-main>
+    <v-footer app>
+      <span>
+        已收录{{allStarts.length}}栋宿舍楼, {{allDests.length}}个教室
+         -- &copy; {{ new Date().getFullYear() }}
+      </span>
+    </v-footer>
   </v-app>
 </template>
 
@@ -50,7 +56,7 @@ export default {
     //
   }),
   computed: {
-    ...mapGetters(["ready"]),
+    ...mapGetters(["ready", "allStarts", "allDests"]),
   }
 };
 </script>
