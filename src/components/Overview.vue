@@ -3,12 +3,16 @@
     <v-card-title>概览</v-card-title>
     <v-card-text>
       <v-container class="pa-0">
-        <v-row align="center" justify="center">
-          <v-col class="py-4 px-5 my-auto">
-            <p>步行 | {{navResult.distance}} | {{navResult.duration}} </p>
+        <v-row align="center" justify="center" no-gutters>
+          <v-col cols=8 class="pr-0">
+            <span>步行</span>
+            <span> | </span>
+            <span class="overview-highlighted">{{navResult.distance}} - {{navResult.duration}}</span>
           </v-col>
-          <v-col class="py-4 px-5 my-auto">
-            <p>楼梯 | {{dest.direction.level}}层</p>
+          <v-col class="pl-0 ml-0">
+            <span>楼梯</span>
+            <span> | </span>
+            <span class="overview-highlighted">{{dest.direction.level}}层</span>
           </v-col>
         </v-row>
       </v-container>
@@ -28,5 +32,8 @@ export default {
 </script>
 
 <style>
-
+.overview-highlighted{
+  /* font-weight: bold; */
+  font-size: 150%;
+}
 </style>
