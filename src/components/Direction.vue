@@ -3,8 +3,14 @@
     <v-card-title>B楼指引</v-card-title>
     <v-card-text>
       <v-container>
+        <v-row v-if="photos(dest).length">
+          <v-col>
+            <v-carousel hide-delimiters height=400>
+              <v-carousel-item v-for="(item, i) in photos(dest)" :key="i" :src="item"></v-carousel-item>
+            </v-carousel>
+          </v-col>
+        </v-row>
         <v-row>
-          <v-col></v-col>
           <v-col>
             <p>进入入口后 {{dir(dest.entrance.toStair.direction)}}</p>
             <p v-if="dest.direction.level">上{{dest.direction.level}}层楼梯</p>
@@ -26,8 +32,20 @@ export default {
   },
   methods: {
     dir: (text) => {
-      const translation = {"left": "左转", "right": "右转", "fwd": "直行"};
+      const translation = {"left": "左转", "right": "右转", "fwd": "直行", "back": "掉头"};
       return translation[text];
+    },
+    photos: (dest) => {
+      let result = [];
+      for (const i of dest.entrance.photos){
+        result.push(`/nav-photos/${i}.jpg`);
+      }
+      if (dest.direction.level){
+        for (const i of dest.entrance.toStair.photos){
+          result.push(`/nav-photos/${i}.jpg`);
+        }
+      }
+      return result;
     }
   }
 }

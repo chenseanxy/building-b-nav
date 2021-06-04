@@ -3,9 +3,11 @@ import {coordConvert} from "../helpers";
 const rawSurvey = {
     E1: {
         coords: "108.837069,34.132801",
+        photos: [],
         stair: {
             id: "S1",
             direction: "right",
+            photos: [],
         },
         levels: [
             {fwd: [426]},
@@ -16,9 +18,11 @@ const rawSurvey = {
     },
     E2: {
         coords: "108.837383,34.132666",
+        photos: ["2-0"],
         stair: {
             id: "S2",
             direction: "left",
+            photos: ["2-1"],
         },
         levels: [
             {left: [422, 425], right: [421]},
@@ -28,24 +32,28 @@ const rawSurvey = {
         ]
     },
     E3: {
-        coords: "",
+        coords: "108.837866,34.132458",
+        photos: ["3-0"],
         stair: {
             id: "S3",
-            direction: "",
+            direction: "left",
+            photos: ["3-1"],
         },
         levels: [
-            {left: [320]},
-            {left: [418, 419], right: [416]},
-            {left: [513, 514], right: [511]},
-            {left: [605, 606], right: [603]},
-            {left: [701]},
+            {back: [320]},
+            {back: [418, 419], fwd: [416]},
+            {back: [513, 514], fwd: [511]},
+            {back: [605, 606], fwd: [603]},
+            {back: [701]},
         ]
     },
     E4: {
-        coords: "",
+        coords: "108.838073,34.132391",
+        photos: ["4-0"],
         stair: {
             id: "S4",
-            direction: "",
+            direction: "left",
+            photos: ["4-1"],
         },
         levels: [
             {left: [217], right: [216]},
@@ -56,65 +64,87 @@ const rawSurvey = {
         ]
     },
     E5: {
-        coords: "",
+        coords: "108.838509,34.132185",
+        photos: ["5-0", "5-1"],
         stair: {
             id: "S5",
-            direction: "",
+            direction: "right",
+            photos: ["5-2"],
         },
         levels: [
             {},
-            {right: [312]},
-            {right: [412]},
-            {right: [507]},
-            {right: [601]},
+            {fwd: [312]},
+            {fwd: [412]},
+            {fwd: [507]},
+            {fwd: [601]},
         ]
     },
     E6: {
-        coords: "",
+        coords: "108.838639,34.132114",
+        photos: ["6-0", "6-1"],
         stair: {
             id: "S6",
-            direction: "",
+            direction: "left",
+            photos: ["6-2"],
         },
         levels: [
-            {left: [211], right: [208]},
-            {left: [311], right: [308]},
-            {left: [411], right: [408]},
-            {left: [506], right: [503]},
+            {back: [211], fwd: [208]},
+            {back: [311], fwd: [308]},
+            {back: [411], fwd: [408]},
+            {back: [506], fwd: [503]},
         ]
     },
     E8: {
-        coords: "",
+        coords: "108.839214,34.131868",
+        photos: ["8-0"],
         stair: {
             id: "S8",
-            direction: "",
+            direction: "right",
+            photos: ["8-1"],
         },
         levels: [
-            {left: [106], right: [105]},
-            {left: [207], right: [206]},
-            {left: [307], right: [306]},
-            {left: [407], right: [406]},
-            {left: [502]},
+            {back: [106], fwd: [105]},
+            {back: [207], fwd: [206]},
+            {back: [307], fwd: [306]},
+            {back: [407], fwd: [406]},
+            {back: [502]},
         ]
     },
     E9: {
-        coords: "",
+        coords: "108.839537,34.131722",
+        photos: ["9-0"],
         stair: {
             id: "S9",
-            direction: "",
+            direction: "right",
+            photos: ["9-1"],
         },
         levels: [
-            {right: [101]},
-            {left: [203], right: [201]},
-            {left: [303], right: [301]},
-            {left: [403], right: [401]},
-            {left: [501]},
+            {fwd: [101]},
+            {back: [203], fwd: [201]},
+            {back: [303], fwd: [301]},
+            {back: [403], fwd: [401]},
+            {back: [501]},
+        ]
+    },
+    E10: {
+        coords: "108.838369,34.132443",
+        photos: ["10-0"],
+        stair: {
+            id: "S10",
+            direction: "fwd",
+            photos: ["10-1"],
+        },
+        levels: [
+            {},
+            {left: [443, 442], right: [437, 434, 433]},
+            {left: [537, 538], right: [532, 529, 528]},
         ]
     }
 }
 
 let survey = {}
 for (const entrance in rawSurvey){
-    const {coords, levels, stair} = rawSurvey[entrance];
+    const {coords, levels, stair, photos} = rawSurvey[entrance];
     for (var level=0; level < levels.length; level++){
         var currentLevel = levels[level];
         for (const direction in currentLevel){
@@ -125,6 +155,7 @@ for (const entrance in rawSurvey){
                         id: entrance,
                         coords: coordConvert(coords),
                         toStair: {...stair},
+                        photos,
                     },
                     direction: {
                         direction,
